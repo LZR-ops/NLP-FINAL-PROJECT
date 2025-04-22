@@ -12,7 +12,7 @@ from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 import matplotlib.pyplot as plt
 
 # If first run, uncomment to download stopwords:
-# nltk.download("stopwords")
+nltk.download("stopwords")
 
 DATA_DIR = "data"
 os.makedirs(DATA_DIR, exist_ok=True)
