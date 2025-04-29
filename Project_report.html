@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Project_report.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="sentiment-snapshots-from-ishowspeeds-china-stream-comments">Sentiment Snapshots from IShowSpeed’s China Stream Comments</h1>
+<p><strong>Author:</strong> Zerong Lu<br>
+<strong>Date:</strong> April 29, 2025</p>
+<hr>
+<h2 id="executive-summary">Executive Summary</h2>
+<p>This study examines the emotional tenor and thematic focus of viewer comments on IShowSpeed’s YouTube livestream <em>“IRL Stream in China 🇨🇳”</em> (video ID: <code>fK85SQzm0Z0</code>). Leveraging Python and established NLP tools, we scraped 1,000 comments, cleaned and tokenized them with NLTK, and performed sentiment analysis using VADER. Results reveal that <strong>55.9%</strong> of comments were <strong>neutral</strong>, <strong>32.2%</strong> <strong>positive</strong>, and <strong>11.9%</strong> <strong>negative</strong>. The most frequent tokens—<strong>“china,” “speed,” “chinese,” “people,”</strong> and <strong>“streams”</strong>—highlight viewers’ focus on both the location and the creator. Although timestamp data proved unreliable (preventing a temporal analysis), we successfully generated visuals for sentiment distribution, comment-length distribution, and top keywords. These findings shed light on how a global online audience reacts to a major influencer’s portrayal of a foreign locale, offering insights for digital public sphere research, cross-cultural marketing, and influencer-driven soft power.</p>
+<hr>
+<h2 id="1-introduction-and-motivation">1. Introduction and Motivation</h2>
+<p>YouTube has become a primary arena for cultural exchange, where influencers can shape international perceptions in real time. Darren Watkins Jr.—better known as IShowSpeed—commands over 37 million subscribers with his dynamic, often unpredictable streaming style. On January 4, 2025, Speed broadcast live from Shanghai, showcasing urban landmarks, street food scenes, and candid interactions with fans. The event drew both domestic and global audiences, sparking a rich tapestry of viewer commentary.</p>
+<p>Understanding these comments offers a window into audience emotions and attitudes toward China as depicted by a Western content creator. Prior work has used sentiment analysis to gauge public reactions on social media platforms (Hutto &amp; Gilbert, no date; Cunha et al., 2020), but few studies focus on live-stream contexts or cross-cultural settings. This project addresses that gap by asking:</p>
+<blockquote>
+<p><strong>What emotions and attitudes do viewers express in the comments of IShowSpeed’s Shanghai livestream on YouTube?</strong></p>
+</blockquote>
+<p>Exploring this question advances several fields:</p>
+<ol>
+<li><strong>Digital Public Sphere:</strong> How do real-time comments reflect collective opinions in an online forum?</li>
+<li><strong>Soft Power &amp; Cultural Exchange:</strong> Can a popular entertainer influence international perceptions of a country?</li>
+<li><strong>NLP Methodology:</strong> What challenges arise in applying off-the-shelf sentiment tools to noisy, emoji-laden livestream comments?</li>
+</ol>
+<p>By combining comment scraping, rule-based sentiment analysis, and descriptive visualization, this work provides both methodological insights and empirical findings relevant to researchers, marketers, and digital media scholars.</p>
+<hr>
+<h2 id="2-sample-data-corpus">2. Sample, Data, Corpus</h2>
+<h3 id="21-data-collection">2.1 Data Collection</h3>
+<ul>
+<li><strong>Video:</strong> “IRL Stream in China 🇨🇳”</li>
+<li><strong>URL:</strong> <a href="https://www.youtube.com/watch?v=fK85SQzm0Z0&amp;t=9415s">https://www.youtube.com/watch?v=fK85SQzm0Z0&amp;t=9415s</a></li>
+<li><strong>Tool:</strong> <code>youtube-comment-downloader</code> (Python package)</li>
+<li><strong>Sample Size:</strong> 1,000 comments (most recent)</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">from</span> youtube_comment_downloader <span class="hljs-keyword">import</span> YoutubeCommentDownloader
+
+downloader = YoutubeCommentDownloader()
+<span class="hljs-keyword">for</span> c <span class="hljs-keyword">in</span> downloader.get_comments(<span class="hljs-string">"fK85SQzm0Z0"</span>):
+    <span class="hljs-comment"># collect up to 1,000 entries</span>
+    <span class="hljs-keyword">pass</span>
+</div></code></pre>
+<p>Each comment entry contained:</p>
+<ul>
+<li><code>author</code></li>
+<li><code>text</code></li>
+<li><code>time</code> (millisecond timestamp; many were <code>null</code>, so time-series analysis was skipped)</li>
+</ul>
+<h3 id="22-preprocessing">2.2 Preprocessing</h3>
+<p>Using NLTK:</p>
+<ol>
+<li><strong>Lowercasing</strong></li>
+<li><strong>URL Removal</strong>: regex <code>http\S+|www\S+</code></li>
+<li><strong>Punctuation Removal</strong>: regex <code>[^\w\s]</code></li>
+<li><strong>Stopword Removal</strong>: NLTK English stopwords</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> json, re
+<span class="hljs-keyword">import</span> nltk
+nltk.download(<span class="hljs-string">"stopwords"</span>)
+<span class="hljs-keyword">from</span> nltk.corpus <span class="hljs-keyword">import</span> stopwords
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">clean_text</span><span class="hljs-params">(text)</span>:</span>
+    text = re.sub(<span class="hljs-string">r"http\S+|www\S+"</span>, <span class="hljs-string">""</span>, text)
+    text = re.sub(<span class="hljs-string">r"[^\w\s]"</span>, <span class="hljs-string">""</span>, text)
+    text = text.lower().strip()
+    stops = set(stopwords.words(<span class="hljs-string">"english"</span>))
+    <span class="hljs-keyword">return</span> <span class="hljs-string">" "</span>.join(tok <span class="hljs-keyword">for</span> tok <span class="hljs-keyword">in</span> text.split() <span class="hljs-keyword">if</span> tok <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> stops)
+
+<span class="hljs-keyword">with</span> open(<span class="hljs-string">"data/raw_comments.json"</span>) <span class="hljs-keyword">as</span> f:
+    data = json.load(f)
+<span class="hljs-keyword">for</span> c <span class="hljs-keyword">in</span> data:
+    c[<span class="hljs-string">"clean_text"</span>] = clean_text(c[<span class="hljs-string">"text"</span>])
+<span class="hljs-keyword">with</span> open(<span class="hljs-string">"data/clean_comments.json"</span>, <span class="hljs-string">"w"</span>) <span class="hljs-keyword">as</span> f:
+    json.dump(data, f, ensure_ascii=<span class="hljs-literal">False</span>, indent=<span class="hljs-number">2</span>)
+</div></code></pre>
+<h3 id="23-sentiment-analysis">2.3 Sentiment Analysis</h3>
+<p>We applied <strong>ADER</strong> (Hutto &amp; Gilbert, no date), a rule-based model optimized for social media. VADER returns four scores:</p>
+<ul>
+<li><strong>neg/neu/pos</strong>: Negative, neutral, positive proportions</li>
+<li><strong>compound</strong>: Aggregate score in [–1, 1]</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">from</span> vaderSentiment.vaderSentiment <span class="hljs-keyword">import</span> SentimentIntensityAnalyzer
+
+analyzer = SentimentIntensityAnalyzer()
+<span class="hljs-keyword">with</span> open(<span class="hljs-string">"data/clean_comments.json"</span>) <span class="hljs-keyword">as</span> f:
+    data = json.load(f)
+<span class="hljs-keyword">for</span> c <span class="hljs-keyword">in</span> data:
+    c[<span class="hljs-string">"sentiment"</span>] = analyzer.polarity_scores(c[<span class="hljs-string">"clean_text"</span>])
+<span class="hljs-keyword">with</span> open(<span class="hljs-string">"data/sentiment_comments.json"</span>, <span class="hljs-string">"w"</span>) <span class="hljs-keyword">as</span> f:
+    json.dump(data, f, ensure_ascii=<span class="hljs-literal">False</span>, indent=<span class="hljs-number">2</span>)
+</div></code></pre>
+<p>Comments were labeled as:</p>
+<ul>
+<li><strong>Positive</strong> (<code>compound ≥ 0.05</code>)</li>
+<li><strong>Negative</strong> (<code>compound ≤ –0.05</code>)</li>
+<li><strong>Neutral</strong> (rest)</li>
+</ul>
+<hr>
+<h2 id="3-descriptive-statistics">3. Descriptive Statistics</h2>
+<p>Before diving into deeper analysis, we first summarize the basic characteristics of our comment corpus. We examine overall sentiment proportions, comment‐length variation, lexical diversity, and most frequent tokens.</p>
+<h3 id="31-sentiment-distribution">3.1 Sentiment Distribution</h3>
+<ul>
+<li><strong>Neutral</strong>: 559 (55.9%)</li>
+<li><strong>Positive</strong>: 322 (32.2%)</li>
+<li><strong>Negative</strong>: 119 (11.9%)</li>
+</ul>
+<p><img src="image-1.png" alt="alt text"></p>
+<blockquote>
+<p><strong>Interpretation:</strong> A majority of comments are neutral—viewers often offer observational or descriptive remarks (“I see the Bund lit up at night”). Yet over 30% positive sentiment indicates genuine enthusiasm, while a modest negative share reflects occasional critiques or misunderstandings.</p>
+</blockquote>
+<h3 id="32-comment-length-distribution">3.2 Comment Length Distribution</h3>
+<p><img src="image.png" alt="alt text"></p>
+<ul>
+<li><strong>Mean length:</strong> ~8 tokens</li>
+<li><strong>Median length:</strong> 6 tokens</li>
+<li><strong>Range:</strong> 1 to 40+ tokens</li>
+</ul>
+<blockquote>
+<p><strong>Interpretation:</strong> Comment lengths follow a right‐skewed distribution: most users write brief reactions (1–10 tokens), while a smaller tail of longer comments (20+ tokens) often provides more detailed observations or comparisons.</p>
+</blockquote>
+<h3 id="33-lexical-diversity">3.3 Lexical Diversity</h3>
+<ul>
+<li><strong>Total comments:</strong> 1,000</li>
+<li><strong>Unique tokens (post-cleaning):</strong> 4,215</li>
+<li><strong>Type‐token ratio:</strong> 0.42</li>
+</ul>
+<blockquote>
+<p><strong>Interpretation:</strong> A type‐token ratio of 0.42 indicates moderate lexical variety—viewers reuse common terms (e.g., “china,” “speed”) while also contributing idiosyncratic descriptors (“santai,” “crazyenergy”).</p>
+</blockquote>
+<h3 id="34-top-10-keywords">3.4 Top 10 Keywords</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Rank</th>
+<th style="text-align:center">Keyword</th>
+<th style="text-align:center">Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">china</td>
+<td style="text-align:center">260</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">speed</td>
+<td style="text-align:center">127</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">chinese</td>
+<td style="text-align:center">97</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">people</td>
+<td style="text-align:center">96</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">streams</td>
+<td style="text-align:center">73</td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td style="text-align:center">korea</td>
+<td style="text-align:center">56</td>
+</tr>
+<tr>
+<td style="text-align:center">7</td>
+<td style="text-align:center">santai</td>
+<td style="text-align:center">54</td>
+</tr>
+<tr>
+<td style="text-align:center">8</td>
+<td style="text-align:center">world</td>
+<td style="text-align:center">53</td>
+</tr>
+<tr>
+<td style="text-align:center">9</td>
+<td style="text-align:center">like</td>
+<td style="text-align:center">52</td>
+</tr>
+<tr>
+<td style="text-align:center">10</td>
+<td style="text-align:center">country</td>
+<td style="text-align:center">48</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Interpretation:</strong> The dominance of “china” and “speed” underlines the dual focus on locale and streamer. Terms like “people” and “world” suggest viewers contextualize the livestream within broader cultural and global frameworks.</p>
+</blockquote>
+<hr>
+<h2 id="4-main-analysis--methodology">4. Main Analysis &amp; Methodology</h2>
+<h3 id="41-why-vader">4.1 Why VADER?</h3>
+<ul>
+<li>Designed for social media text (handles slang, emojis, punctuation)</li>
+<li>Lightweight, rule-based, no GPU needed</li>
+<li>Provides an interpretable compound score</li>
+</ul>
+<h3 id="42-processing-pipeline">4.2 Processing Pipeline</h3>
+<ol>
+<li><strong>Scrape comments</strong>: <code>fetch_comments()</code> → <code>raw_comments.json</code></li>
+<li><strong>Clean text</strong>: <code>clean_text()</code> → <code>clean_comments.json</code></li>
+<li><strong>Sentiment score</strong>: <code>analyze_sentiment()</code> → <code>sentiment_comments.json</code></li>
+<li><strong>Visualize</strong>:
+<ul>
+<li><code>plot_sentiment()</code> → <code>sentiment_dist.png</code></li>
+<li><code>length_distribution()</code> → <code>length_dist.png</code></li>
+<li><code>plot_top_keywords()</code> → <code>top_keywords.png</code></li>
+</ul>
+</li>
+</ol>
+<h3 id="43-handling-missing-timestamps">4.3 Handling Missing Timestamps</h3>
+<p>The <code>time_series()</code> function detected no valid <code>time</code> values and was skipped. Future work could use the YouTube Data API or <code>yt-dlp</code> for reliable comment timestamps.</p>
+<hr>
+<h2 id="5-results">5. Results</h2>
+<h3 id="51-overall-sentiment">5.1 Overall Sentiment</h3>
+<ul>
+<li><strong>Neutral (55.9%)</strong>: Observational comments</li>
+<li><strong>Positive (32.2%)</strong>: Enthusiastic reactions</li>
+<li><strong>Negative (11.9%)</strong>: Critiques or misunderstandings</li>
+</ul>
+<h3 id="52-thematic-insights">5.2 Thematic Insights</h3>
+<ul>
+<li>Location (“china”) and streamer (“speed”) dominate discussion</li>
+<li>Terms like “people,” “world,” and “country” indicate broader cultural commentary</li>
+</ul>
+<h3 id="53-qualitative-examples">5.3 Qualitative Examples</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Sentiment</th>
+<th style="text-align:left">Sample Comment</th>
+<th style="text-align:center">Compound Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Positive</td>
+<td style="text-align:left">“This is awesome, Shanghai looks amazing!”</td>
+<td style="text-align:center">0.84</td>
+</tr>
+<tr>
+<td style="text-align:center">Neutral</td>
+<td style="text-align:left">“I see street food stalls and crazy traffic.”</td>
+<td style="text-align:center">0.00</td>
+</tr>
+<tr>
+<td style="text-align:center">Negative</td>
+<td style="text-align:left">“Too chaotic, feels overwhelming.”</td>
+<td style="text-align:center">–0.60</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="6-conclusion-limitations--outlook">6. Conclusion, Limitations &amp; Outlook</h2>
+<h3 id="61-conclusion">6.1 Conclusion</h3>
+<p>This analysis of 1,000 YouTube comments on IShowSpeed’s Shanghai livestream reveals a predominantly neutral response (55.9%), punctuated by significant positive engagement (32.2%) and a smaller share of negative reactions (11.9%). The prevalence of neutral comments suggests that many viewers used the comment section to share observations—about Shanghai’s urban landscape, cultural landmarks, and street scenes—rather than to express strong sentiments. Nevertheless, the substantial positive proportion underscores genuine enthusiasm and appreciation for both the locale and the streamer’s energy. Frequent keywords such as <strong>“china,” “speed,” “people,”</strong> and <strong>“streams”</strong> point to a dual focus: audiences are concurrently evaluating the host city and the content creator. Overall, this pattern highlights how digital audiences process cross-cultural experiences in real time, balancing commentary on environment, culture, and personality.</p>
+<h3 id="62-limitations">6.2 Limitations</h3>
+<ol>
+<li><strong>Timestamp Gaps:</strong> The absence of reliable <code>time</code> metadata prevented any analysis of how sentiment evolved during the livestream. Temporal dynamics—such as peaks of excitement or moments of critique—remain unexplored.</li>
+<li><strong>Model Constraints:</strong> Although VADER excels with short, informal text, it can misinterpret sarcasm, irony, or culturally specific idioms, potentially skewing positive or negative counts.</li>
+<li><strong>Sampling Bias:</strong> Our dataset is limited to the first 1,000 most recent comments, which may overrepresent highly engaged fans and underrepresent later or less active viewers.</li>
+<li><strong>Language Coverage:</strong> Non-English comments were included in raw form but processed as English text, possibly diluting sentiment accuracy for multilingual or code-switched entries.</li>
+</ol>
+<h3 id="63-future-work">6.3 Future Work</h3>
+<ul>
+<li><strong>Enhanced Temporal Analysis:</strong> Integrate the YouTube Data API or browser-based scraping tools (e.g., <code>yt-dlp</code>) to capture precise comment timestamps and examine sentiment trends over the course of the livestream.</li>
+<li><strong>Advanced Sentiment Models:</strong> Fine-tune transformer-based classifiers (e.g., BERT, RoBERTa) on a labeled subset of these comments to improve handling of sarcasm, negation, and mixed-language posts.</li>
+<li><strong>Multilingual &amp; Cultural Comparison:</strong> Expand analysis to include Mandarin and other language comments, using translation pipelines or language-specific sentiment lexicons to compare domestic versus international audience reactions.</li>
+<li><strong>Topic Modeling:</strong> Apply LDA or clustering techniques to uncover recurring themes (e.g., food, architecture, crowd behavior), and link these topics to sentiment scores to provide a richer, multidimensional view of viewer engagement.</li>
+</ul>
+<hr>
+<h2 id="references">References</h2>
+<ul>
+<li>Hutto, C. J., &amp; Gilbert, E. (no date). VADER: A Parsimonious Rule-based Model for Sentiment Analysis of Social Media Text.
+Proceedings of the International AAAI Conference on Web and Social Media.</li>
+<li>Cunha, A. A. L., Costa, M. C., &amp; Pacheco, M. A. C. (2020). “Sentiment analysis of YouTube video comments using Deep Neural Networks.”
+In Advances in Artificial Intelligence: IEA/AIE 2020 International Workshops.</li>
+<li>Mikolov, T., et al. (2013). “Efficient Estimation of Word Representations in Vector Space.”
+arXiv:1301.3781.</li>
+</ul>
+
+</body>
+</html>
